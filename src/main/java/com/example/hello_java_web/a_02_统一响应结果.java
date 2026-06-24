@@ -36,16 +36,15 @@ public class a_02_统一响应结果 {
     // 实体参数
     @RequestMapping("/hello4")
     public Result hello4(User user) {
-        User user1 = user;
-        System.out.println(user1.toString());
-        return Result.success(user1);
+        System.out.println(user.toString());
+        return Result.success(user);
     }
 
     // 数组参数
     @RequestMapping("/list")
     public Result list(String[] names) {
-        for (int i = 0; i < names.length; i++) {
-            System.out.println(names[i]);
+        for (String name : names) {
+            System.out.println(name);
         }
         return Result.success(names);
     }
@@ -53,8 +52,8 @@ public class a_02_统一响应结果 {
     // List集合参数
     @RequestMapping("/list2")
     public Result list2(@RequestParam List<String> users) {
-        for (int i = 0; i < users.size(); i++) {
-            System.out.println(users.get(i).toString());
+        for (String user : users) {
+            System.out.println(user);
         }
         return Result.success(users);
     }

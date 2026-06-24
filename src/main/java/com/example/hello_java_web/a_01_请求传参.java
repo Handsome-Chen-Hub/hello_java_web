@@ -34,16 +34,15 @@ public class a_01_请求传参 {
     // 实体参数
     @RequestMapping("/hello4")
     public String hello4(User user) {
-        User user1 = user;
-        System.out.println(user1.toString());
-        return user1.toString();
+        System.out.println(user.toString());
+        return user.toString();
     }
 
     // 数组参数
     @RequestMapping("/list")
     public String[] list(String[] names) {
-        for (int i = 0; i < names.length; i++) {
-            System.out.println(names[i]);
+        for (String name : names) {
+            System.out.println(name);
         }
         return names;
     }
@@ -51,8 +50,8 @@ public class a_01_请求传参 {
     // List集合参数
     @RequestMapping("/list2")
     public List<String> list2(@RequestParam List<String> users) {
-        for (int i = 0; i < users.size(); i++) {
-            System.out.println(users.get(i).toString());
+        for (String user : users) {
+            System.out.println(user);
         }
         return users;
     }
