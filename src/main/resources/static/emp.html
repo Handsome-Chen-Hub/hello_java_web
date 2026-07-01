@@ -47,7 +47,7 @@
             }
         },
         mounted(){
-            axios.get('/listEmp').then(res=>{
+            axios.get('/ioc_di/listEmp').then(res=>{
                 if(res.data.code){
                     this.tableData = res.data.data;
                 }

@@ -1,24 +1,25 @@
-package com.example.hello_java_web;
+package com.example.hello_java_web.service.impl;
 
+import com.example.hello_java_web.dao.EmpDao;
+import com.example.hello_java_web.dao.impl.EmpDaoA;
 import com.example.hello_java_web.pojo.Emp;
-import com.example.hello_java_web.pojo.Result;
-import com.example.hello_java_web.utils.XmlParserUtils;
-import org.apache.tomcat.util.bcel.Const;
-import org.springframework.web.bind.annotation.*;
+import com.example.hello_java_web.service.EmpService;
+import jakarta.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
-@RestController
-public class a_03_读取xml文件 {
+@Service // 将EmpServiceB类交给IOC容器,成为IOC容器中的bean
+public class EmpServiceB implements EmpService {
 
-    @RequestMapping("/listEmp")
-    public Result list() {
-        // String file = "E:\\demo\\javaDemo\\03-spring_boot\\hello_java_web\\src\\main\\resources\\emp.xml";
-        String file = this.getClass().getClassLoader().getResource("emp.xml").getPath();
-        // 加载 xml
-        List<Emp> empList = XmlParserUtils.parse(file, Emp.class);
-        // 处理数据
+    @Resource // 运行时由IOC容器提供EmpDao的bean对象
+    private EmpDao empDao ;
+
+    @Override
+    public List<Emp> listEmp() {
+        List<Emp> empList = empDao.findAll();
         for (Emp emp : empList) {
             // 处理性别
             String gender = emp.getGender();
@@ -46,8 +47,6 @@ public class a_03_读取xml文件 {
                 }
             }
         }
-        // 响应返回
-        return Result.success(empList);
+        return empList;
     }
-
 }
