@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: demo
+
+  # ==================================   配置JDBC   ==================================
+  datasource:
+    #驱动类名称
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #数据库连接的url
+    url: jdbc:mysql://localhost:3306/java_web
+    #连接数据库的用户名
+    username: root
+    #连接数据库的密码
+    password: 123123
+
+server:
+  # 设置启动端口
+  port: 8088
+
+mybatis:
+  # MyBatis XML 映射文件路径
+  mapper-locations: classpath:mapper/*.xml
