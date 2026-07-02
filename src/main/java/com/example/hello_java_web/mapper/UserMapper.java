@@ -12,15 +12,33 @@ public interface UserMapper {
     @Select("select * from user")
     List<User2> selectAllUser();
 
+    /**
+     * 根据id删除用户
+     *
+     * @param id
+     * @return
+     */
     @Delete("delete from user where id = #{id}")
     Integer deleteById(int id);
 
+    /**
+     * 新增
+     *
+     * @param user
+     */
     @Insert("insert into user(name,age,gender,phone) values (#{name},#{age},#{gender},#{phone})")
-    Integer insertUser(User2 user);
+    void insertUser(User2 user);
 
+    /**
+     * 更新
+     *
+     * @param user
+     */
     @Update("update user set name = #{name} , phone=#{phone} , age=#{age} , gender=#{gender} where id= #{id}")
-    Integer upDateUserById(User2 user);
+    void upDateUserById(User2 user);
 
+
+    // 登录 若基于springBoot官方创建的springBoot项目可以不写@Param("userName") 直接使用形参名称
     @Select("select * from user where name=#{userName} and password = #{password}")
     Integer login(@Param("userName") String name, @Param("password") String password);
 
