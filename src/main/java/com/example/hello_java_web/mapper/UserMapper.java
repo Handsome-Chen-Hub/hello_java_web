@@ -9,7 +9,7 @@ import java.util.List;
 public interface UserMapper {
 
     // mybatis 查询
-    @Select("select * from user")
+    // @Select("select * from user")
     List<User2> selectAllUser();
 
     /**
